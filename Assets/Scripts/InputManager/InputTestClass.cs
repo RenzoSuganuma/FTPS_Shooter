@@ -8,11 +8,10 @@ public class InputTestClass : MonoBehaviour
     private void Start()
     {
         _iPooler = GetComponent<InputPooler>();
-
     }
 
     private void Update()
     {
-        Debug.Log(_iPooler.GetActionValueAs<bool>("Player", "Fire"));
+        Debug.Log(_iPooler.GetActionValueAsButton("Player", "Fire"));
     }
 }

@@ -40,11 +40,18 @@ namespace RSEngine
             T result = default;
             if (action != null)
             {
-                var input = action.ReadValueAsObject();
+            var input = action.ReadValueAsObject();
                 if (input != null)
-                    result =  (T)input;
+                    result = (T)input;
             }
             return result;
+        }
+        
+        public bool GetActionValueAsButton(string actionMapName, string actionName)
+        {
+            var actionMap = _inputAction.FindActionMap(actionMapName);
+            var action = actionMap.FindAction(actionName);
+            return action.IsPressed();
         }
     }
 
