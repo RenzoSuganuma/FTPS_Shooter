@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 namespace RSEngine
 {
-    public class InputPooler : MonoBehaviour
+    public class InputValueWindow : MonoBehaviour
     {
         [SerializeField] InputActionAsset _inputAction;
 
@@ -15,7 +15,8 @@ namespace RSEngine
         }
 
         // ƒAƒNƒVƒ‡ƒ“–¼‚ðŽw’è‚µ‚Ä‚»‚ê‚É“o˜^
-        public void BindAction(string actionMapName, string actionName, Action<InputAction.CallbackContext> callbackAction, ActionInvokeFaze actionInvokingFaze)
+        public void BindAction(string actionMapName, string actionName
+            , Action<InputAction.CallbackContext> callbackAction, ActionInvokeFaze actionInvokingFaze)
         {
             var actionMap = _inputAction.FindActionMap(actionMapName);
             var action = actionMap.FindAction(actionName);
@@ -40,13 +41,13 @@ namespace RSEngine
             T result = default;
             if (action != null)
             {
-            var input = action.ReadValueAsObject();
+                var input = action.ReadValueAsObject();
                 if (input != null)
                     result = (T)input;
             }
             return result;
         }
-        
+
         public bool GetActionValueAsButton(string actionMapName, string actionName)
         {
             var actionMap = _inputAction.FindActionMap(actionMapName);

@@ -4,14 +4,14 @@ using UnityEngine;
 using RSEngine;
 public class InputTestClass : MonoBehaviour
 {
-    InputPooler _iPooler;
+    InputValueWindow _inputVWindow;
     private void Start()
     {
-        _iPooler = GetComponent<InputPooler>();
+        _inputVWindow = GetComponent<InputValueWindow>();
     }
 
     private void Update()
     {
-        Debug.Log(_iPooler.GetActionValueAsButton("Player", "Fire"));
+        Debug.Log(_inputVWindow.GetActionValueAsButton("Player", "Fire"));
     }
 }
