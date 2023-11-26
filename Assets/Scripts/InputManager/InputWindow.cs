@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 namespace RSEngine
 {
-    public class InputValueWindow : MonoBehaviour
+    public class InputWindow : MonoBehaviour
     {
         [SerializeField] InputActionAsset _inputAction;
 
