@@ -7,29 +7,30 @@ using UnityEngine.InputSystem;
 public class RecoilComponent : MonoBehaviour
 {
     InputWindowLL _input;
+    Vector2 _recoilDir;
 
     private void Start()
     {
         _input = GameObject.FindFirstObjectByType<InputWindowLL>();
+        _input.BindAction("Player", "Fire",
+            (InputAction.CallbackContext context) =>
+            {
+                _recoilDir = (context.ReadValueAsButton()) ? Vector2.up : Vector2.zero;
+            }
+        );
     }
 
     private void FixedUpdate()
     {
-        
-    }
+        Debug.Log(_recoilDir.ToString());
+        Camera main = Camera.main;
+        Quaternion rotation = main.transform.rotation;
 
-    public void OnMove(InputAction.CallbackContext callback)
-    {
+        if (_recoilDir != Vector2.zero)
+            rotation.x += _recoilDir.y * -Time.deltaTime;
+        else if(rotation.x != 0)
+            rotation.x += Time.deltaTime;
 
-    }
-
-    public void OnLook(InputAction.CallbackContext callback)
-    {
-
-    }
-
-    public void OnFire(InputAction.CallbackContext callback)
-    {
-
+        main.transform.rotation = rotation;
     }
 }
