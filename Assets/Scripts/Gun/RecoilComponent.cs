@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 /// <summary> 銃の反動を再現するコンポーネント </summary>
 public class RecoilComponent : MonoBehaviour
 {
+    [SerializeField] Camera _cam;
     InputWindowLL _input;
     Vector2 _recoilDir;
 
@@ -22,15 +23,13 @@ public class RecoilComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(_recoilDir.ToString());
-        Camera main = Camera.main;
-        Quaternion rotation = main.transform.rotation;
+        Quaternion rotation = _cam.transform.rotation;
 
         if (_recoilDir != Vector2.zero)
             rotation.x += _recoilDir.y * -Time.deltaTime;
-        else if(rotation.x != 0)
+        else if(rotation.x < 0)
             rotation.x += Time.deltaTime;
 
-        main.transform.rotation = rotation;
+        _cam.transform.rotation = rotation;
     }
 }
