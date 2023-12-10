@@ -9,10 +9,12 @@ namespace RSEngine
     public class InputWindowLL : MonoBehaviour
     {
         [SerializeField] InputActionAsset _inputAction;
+        [SerializeField] bool _dontDestroyThis;
 
         private void Awake()
         {
             GameObject.DontDestroyOnLoad(this);
+            if (_dontDestroyThis) GameObject.DontDestroyOnLoad(this.gameObject);
         }
 
         // アクション名を指定してそれに登録
